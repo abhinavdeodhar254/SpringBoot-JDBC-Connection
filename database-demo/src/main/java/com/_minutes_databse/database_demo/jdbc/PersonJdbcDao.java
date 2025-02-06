@@ -22,4 +22,12 @@ public class PersonJdbcDao {
     public Person findObjectID(int id) {
         return jdbcTemplate.queryForObject("Select * from person where id=?",new Object[]{id}, new BeanPropertyRowMapper<Person>(Person.class));
     }
+
+    public Person findbyName(String name){
+        return jdbcTemplate.queryForObject("Select * from person where name like ?", new Object[]{name},new BeanPropertyRowMapper<>(Person.class));
+    }
+    public int   deletebyid(int id) {
+        String str="Delete from person where id =?";
+        return jdbcTemplate.update(str, id);
+    }
 }
