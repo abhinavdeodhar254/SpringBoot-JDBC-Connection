@@ -18,4 +18,8 @@ public class PersonJdbcDao {
     public List<Person> findAll() {
        return jdbcTemplate.query("Select * from person", new BeanPropertyRowMapper(Person.class));
     }
+
+    public Person findObjectID(int id) {
+        return jdbcTemplate.queryForObject("Select * from person where id=?",new Object[]{id}, new BeanPropertyRowMapper<Person>(Person.class));
+    }
 }
